@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Greentrace.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b99d69f6e24cfcd430ce8ea75713ffc20e7db756")]
 [assembly: System.Reflection.AssemblyProductAttribute("Greentrace.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Greentrace.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

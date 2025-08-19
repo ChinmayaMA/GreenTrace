@@ -22,7 +22,18 @@ builder.Services.AddControllers();
 // Add Health Checks
 builder.Services.AddHealthChecks();
 
+//add swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+if(app.Environment.IsDevelopment())
+{
+    // Use Swagger in development
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Use CORS
 app.UseCors("AllowFrontend");
