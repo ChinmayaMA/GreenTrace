@@ -13,37 +13,36 @@ namespace Greentrace.Api.Controllers
     [Route("api/[controller]")]
     public class ReportsController : Controller
     {
-        private readonly ILogger<ReportsController> _logger;
-        private static readonly List<Report> _reports = new List<Report>();
-
-        public ReportsController(ILogger<ReportsController> logger)
-        {
-            _logger = logger;
-        }
+        private static readonly List<Report> Reports = new();
 
         [HttpGet]
-        public ActionResult GetReports()
-        {
-            return Ok(_reports);
-        }
-        [HttpPost]
-        public IActionResult AddReport([FromBody] Report report)
-        {
-            report.Id = _reports.Count > 0 ? _reports.Max(r => r.Id) + 1 : 1;
-            report.SubmittedOn = DateTime.UtcNow;
-            _reports.Add(report);
-            return CreatedAtAction(nameof(GetReports), new { id = report.Id }, report);
-        }
+        public IActionResult GetAll() => Ok(Reports);
+
         [HttpGet("{id}")]
-        public IActionResult GetReportById(int id)
+        public IActionResult GetById(int id)
         {
-            var report = _reports.FirstOrDefault(r => r.Id == id);
-            if (report == null)
-            {
-                return NotFound();
-            }
+            var report = Reports.FirstOrDefault(r => r.Id == id);
+            if (report == null) return NotFound();
             return Ok(report);
         }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] Report report)
+        {
+            report.Id = Reports.Count + 1;
+            report.CreatedAt = DateTime.UtcNow;
+            Reports.Add(report);
+
+            return CreatedAtAction(nameof(GetById), new { id = report.Id }, report);
+        }
+
+        [HttpGet("by-company/{companyId}")]
+        public IActionResult GetByCompany(int companyId)
+        {
+            var companyReports = Reports.Where(r => r.CompanyId == companyId).ToList();
+            return Ok(companyReports);
+        }
+        
 
     }
 }

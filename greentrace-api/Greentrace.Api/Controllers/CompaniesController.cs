@@ -13,35 +13,28 @@ namespace Greentrace.Api.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : Controller
     {
-        private static readonly List<Company> _companies = new();
-        private readonly ILogger<CompaniesController> _logger;
+        private static readonly List<Company> Companies = new();
 
-        public CompaniesController(ILogger<CompaniesController> logger)
-        {
-            _logger = logger;
-        }
         [HttpGet]
-        public IActionResult GetCompanies()
-        {
-            return Ok(_companies);
-        }
+        public IActionResult GetAll() => Ok(Companies);
+
         [HttpGet("{id}")]
-        public IActionResult GetCompanyById(int id)
+        public IActionResult GetById(int id)
         {
-            var company = _companies.FirstOrDefault(c => c.Id == id);
-            if (company == null)
-            {
-                return NotFound();
-            }
+            var company = Companies.FirstOrDefault(c => c.Id == id);
+            if (company == null) return NotFound();
             return Ok(company);
         }
+
         [HttpPost]
-        public IActionResult AddCompany([FromBody] Company company)
+        public IActionResult Create([FromBody] Company company)
         {
-            if (company.Id == 0)
-                company.Id = _companies.Count + 1;
-            _companies.Add(company);
-            return CreatedAtAction(nameof(GetCompanyById),new { id = company.Id }, company);
+            company.Id = Companies.Count + 1;
+            company.CreatedAt = DateTime.UtcNow;
+            Companies.Add(company);
+
+            return CreatedAtAction(nameof(GetById), new { id = company.Id }, company);
         }
+
     }
 }
