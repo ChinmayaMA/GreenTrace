@@ -1,0 +1,65 @@
+###############################
+# .NET / C# (Backend)
+###############################
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Visual Studio files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# ASP.NET scaffolding
+ScaffoldingReadMe.txt
+
+# User secrets
+secrets.json
+
+# Publish output
+publish/
+*.pubxml
+*.pubxml.user
+
+###############################
+# React / Node.js (Frontend)
+###############################
+
+# dependencies
+node_modules/
+
+# production build
+build/
+dist/
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env
+.env.local
+.env.*.local
+
+###############################
+# IDE / Editor configs
+###############################
+
+.vscode/
+.idea/
+*.swp
+*.swo
