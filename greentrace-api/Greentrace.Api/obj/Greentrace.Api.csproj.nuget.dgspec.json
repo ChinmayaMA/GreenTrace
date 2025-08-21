@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.Api/Greentrace.Api.csproj": {}
+    "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.api/Greentrace.api.csproj": {}
   },
   "projects": {
-    "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.Api/Greentrace.Api.csproj": {
+    "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.api/Greentrace.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.Api/Greentrace.Api.csproj",
-        "projectName": "Greentrace.Api",
-        "projectPath": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.Api/Greentrace.Api.csproj",
+        "projectUniqueName": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.api/Greentrace.api.csproj",
+        "projectName": "Greentrace.api",
+        "projectPath": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.api/Greentrace.api.csproj",
         "packagesPath": "/Users/MACH1/.nuget/packages/",
-        "outputPath": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.Api/obj/",
+        "outputPath": "/Users/MACH1/Documents/GreenTrace/greentrace-api/Greentrace.api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/MACH1/.nuget/NuGet/NuGet.Config"
