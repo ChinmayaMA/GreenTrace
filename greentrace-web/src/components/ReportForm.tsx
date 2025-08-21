@@ -1,26 +1,28 @@
+// src/components/ReportForm.tsx
 import { useState } from "react";
 import api from "../api";
 import { Report } from "../types";
 
-interface Props {
-  companyId: number;
-  onCreated: (report: Report) => void;
+interface ReportFormProps {
+  onReportCreated: (report: Report) => void;
 }
 
-export default function ReportForm({ companyId, onCreated }: Props) {
-  const [reportType, setReportType] = useState("Production");
+export default function ReportForm({ onReportCreated }: ReportFormProps) {
+  const [companyId, setCompanyId] = useState("");
+  const [reportType, setReportType] = useState("");
   const [data, setData] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await api.post<Report>("/reports", {
-        companyId,
+        companyId: Number(companyId),
         reportType,
         data,
       });
-      onCreated(res.data);
-      setReportType("Production");
+      onReportCreated(res.data); // ✅ notify parent
+      setCompanyId("");
+      setReportType("");
       setData("");
     } catch (err) {
       console.error("Error creating report", err);
@@ -28,25 +30,29 @@ export default function ReportForm({ companyId, onCreated }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-2 mt-4">
-      <select
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <input
+        type="number"
+        placeholder="Company ID"
+        value={companyId}
+        onChange={(e) => setCompanyId(e.target.value)}
+        className="border p-1 rounded w-full"
+      />
+      <input
+        type="text"
+        placeholder="Report Type"
         value={reportType}
         onChange={(e) => setReportType(e.target.value)}
-        className="border p-2 rounded w-full"
-        required
-      >
-        <option value="Production">Production</option>
-        <option value="Export">Export</option>
-      </select>
+        className="border p-1 rounded w-full"
+      />
       <textarea
+        placeholder="Data"
         value={data}
         onChange={(e) => setData(e.target.value)}
-        placeholder='Report Data (JSON string)'
-        className="border p-2 rounded w-full h-24"
-        required
+        className="border p-1 rounded w-full"
       />
-      <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
-        Add Report
+      <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded">
+        Create Report
       </button>
     </form>
   );
